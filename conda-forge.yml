@@ -4,3 +4,11 @@ travis:
 appveyor:
   secure:
     BINSTAR_TOKEN: OcAUZlpSDgQtX8QAIX7qr8iZhsrOWwlmuyDECE7wAYBRlvXIBJ7BbXhX/Fmz4Oib
+
+channels:
+  targets:
+  - [cryoem, main]
+
+github:
+  user_or_org: cryoem
+  repo_name: fftw-mpi-feedstock
