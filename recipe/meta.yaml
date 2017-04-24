@@ -1,25 +1,28 @@
-{% set version = "3.3.6" %}
+{% set version = "3.3.5" %}
 
 package:
   name: fftw-mpi
   version: {{ version }}
 
 source:
-  fn: fftw-{{ version }}.tar.gz
-  url: http://www.fftw.org/fftw-{{ version }}-pl1.tar.gz
-  sha256: 1ef4aa8427d9785839bc767f3eb6a84fcb5e9a37c31ed77a04e7e047519a183d
+  fn: fftw-{{ version }}.tar.gz                                             # [not win]
+  url: http://www.fftw.org/fftw-{{ version }}.tar.gz                        # [not win]
+  sha256: 8ecfe1b04732ec3f5b7d279fdb8efcad536d555f9d1e8fabd027037d45ea8bcf  # [not win]
+  fn: fftw-{{ version }}-dll32.zip                               # [win32]
+  url: ftp://ftp.fftw.org/pub/fftw/fftw-{{ version }}-dll32.zip  # [win32]
+  fn: fftw-{{ version }}-dll64.zip                               # [win64]
+  url: ftp://ftp.fftw.org/pub/fftw/fftw-{{ version }}-dll64.zip  # [win64]
 
 build:
-  skip: True  # [win]
   number: 0
 
 requirements:
   build:
     - perl 5.22.2.1
-    - openmpi
+    - openmpi  # [not win]
 
   run:
-    - openmpi
+    - openmpi  # [not win]
 
 test:
   commands:
@@ -33,6 +36,7 @@ test:
     # Verify headers are installed
     - test -f ${PREFIX}/include/fftw3.h                  # [not win]
     - test -f ${PREFIX}/include/fftw3-mpi.h              # [not win]
+    - if not exist %LIBRARY_INC%\\fftw3.h exit 1         # [win]
 
     # Verify shared libraries are installed
     {% set fftw_libs = [
@@ -50,6 +54,13 @@ test:
     {% for lib in fftw_libs %}
     - test -f ${PREFIX}/lib/{{ lib }}.dylib    # [osx]
     - test -f ${PREFIX}/lib/{{ lib }}.so       # [linux]
+    {% endfor %}
+      
+    {% set baselist = ["libfftw3f-3", "libfftw3-3", "libfftw3l-3"] %}
+              
+    {% for base in baselist %}          
+    - if not exist %LIBRARY_LIB%\\{{ base }}.lib exit 1  # [win]
+    - if not exist %LIBRARY_BIN%\\{{ base }}.dll exit 1  # [win]          
     {% endfor %}
 
 about:
