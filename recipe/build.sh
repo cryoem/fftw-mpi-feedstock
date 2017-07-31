@@ -2,19 +2,7 @@
 
 unset CFLAGS
 
-if [[ `uname` == 'Darwin' ]]; then
-    export LIBRARY_SEARCH_VAR=DYLD_FALLBACK_LIBRARY_PATH
-    export CC=clang
-    export CXX=clang++
-    export CXXFLAGS="-stdlib=libc++"
-    export CXX_LDFLAGS="-stdlib=libc++"
-else
-    export LIBRARY_SEARCH_VAR=LD_LIBRARY_PATH
-    export CC=gcc
-    export CXX=g++
-fi
-
-export LDFLAGS="-L${PREFIX}/lib"
+export LDFLAGS="${LDFLAGS} -L${PREFIX}/lib"
 
 CONFIGURE="./configure --prefix=$PREFIX --with-pic --enable-shared --enable-threads --disable-fortran --enable-mpi"
 
@@ -26,7 +14,7 @@ INSTALL_CMD="make install"
 # tests are performed during building as they are not available in the
 # installed package.
 # Additional tests can be run with "make smallcheck" and "make bigcheck"
-TEST_CMD="eval cd tests && ${LIBRARY_SEARCH_VAR}=\"$PREFIX/lib\" make check-local && cd -"
+TEST_CMD="eval cd tests && make check-local && cd -"
 
 #
 # We build 3 different versions of fftw:
@@ -49,10 +37,3 @@ do
     ${TEST_CMD}
 done
 
-unset LIBRARY_SEARCH_VAR
-unset CC
-unset CXX
-unset CXXFLAGS
-unset CXX_LDFLAGS
-unset LDFLAGS
-unset CFLAGS
