@@ -2,16 +2,6 @@
 
 unset CFLAGS
 
-if [[ `uname` == 'Darwin' ]]; then
-    export CC=clang
-    export CXX=clang++
-    export CXXFLAGS="-stdlib=libc++"
-    export CXX_LDFLAGS="-stdlib=libc++"
-else
-    export CC=gcc
-    export CXX=g++
-fi
-
 export LDFLAGS="${LDFLAGS} -L${PREFIX}/lib"
 
 CONFIGURE="./configure --prefix=$PREFIX --with-pic --enable-shared --enable-threads --disable-fortran --enable-mpi"
