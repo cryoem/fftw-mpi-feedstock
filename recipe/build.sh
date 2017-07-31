@@ -47,9 +47,3 @@ do
     ${TEST_CMD}
 done
 
-unset CC
-unset CXX
-unset CXXFLAGS
-unset CXX_LDFLAGS
-unset LDFLAGS
-unset CFLAGS
