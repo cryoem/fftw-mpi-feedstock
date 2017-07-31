@@ -64,7 +64,7 @@ test:
               
     {% for base in baselist %}          
     - if not exist %LIBRARY_LIB%\\{{ base }}.lib exit 1  # [win]
-    - if not exist %LIBRARY_BIN%\\{{ base }}.dll exit 1  # [win]          
+    - if not exist %LIBRARY_BIN%\\{{ base }}.dll exit 1  # [win]
     {% endfor %}
 
 about:
