@@ -5,27 +5,30 @@ package:
   version: {{ version }}
 
 source:
-  fn: fftw-{{ version }}.tar.gz                                             # [not win]
-  url: http://www.fftw.org/fftw-{{ version }}.tar.gz                        # [not win]
-  sha256: 8ecfe1b04732ec3f5b7d279fdb8efcad536d555f9d1e8fabd027037d45ea8bcf  # [not win]
-  fn: fftw-{{ version }}-dll32.zip                               # [win32]
-  url: ftp://ftp.fftw.org/pub/fftw/fftw-{{ version }}-dll32.zip  # [win32]
-  fn: fftw-{{ version }}-dll64.zip                               # [win64]
-  url: ftp://ftp.fftw.org/pub/fftw/fftw-{{ version }}-dll64.zip  # [win64]
+  fn: fftw-{{ version }}.tar.gz
+  url: http://www.fftw.org/fftw-{{ version }}.tar.gz
+  sha256: 8ecfe1b04732ec3f5b7d279fdb8efcad536d555f9d1e8fabd027037d45ea8bcf
 
 build:
   number: 1
+  features:
+    - vc9  # [win and py27]
+    - vc14  # [win and py>=35]
+  skip: true  # [win and py35]
 
 requirements:
   build:
     - toolchain
-    - perl 5.22.2.1
+    - perl 5.22.2.1  # [not win]
+    - cmake  # [win]
     - openmpi  # [not win]
 
   run:
     - openmpi  # [not win]
 
 test:
+  requires:
+    - python {{ os.environ.get('PY_VER', '') + '*' }}  # [win]
   commands:
     - exit $(test -f ${PREFIX}/lib/libfftw3f.a)          # [not win]
     - exit $(test -f ${PREFIX}/lib/libfftw3.a)           # [not win]
