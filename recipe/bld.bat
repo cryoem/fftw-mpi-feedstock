@@ -1,21 +1,48 @@
-if "%ARCH%" == "64" (
-  set MACHINE=X64
-) else (
-  set MACHINE=X86
-)
 
-:: make MSVC .lib files from .def
-lib /MACHINE:%MACHINE% /def:libfftw3-3.def
-lib /MACHINE:%MACHINE% /def:libfftw3f-3.def
-lib /MACHINE:%MACHINE% /def:libfftw3l-3.def
-
-:: copy DLLs to LIBRARY_BIN
-copy libfftw3*-3.dll "%LIBRARY_BIN%\"
-
-:: copy .lib "import libraries" to LIBRARY_LIB
-copy libfftw3*-3.lib "%LIBRARY_LIB%\"
-
-:: copy headers to LIBRARY_INC
-copy *.h "%LIBRARY_INC%\"
-
+@rem See https://github.com/xantares/fftw-cmake/
+cp "%RECIPE_DIR%\CMakeLists.txt" .
 if errorlevel 1 exit 1
+cp "%RECIPE_DIR%\config.h.in" .
+if errorlevel 1 exit 1
+
+mkdir build && cd build
+
+set CMAKE_CONFIG="Release"
+
+cmake -LAH -G"NMake Makefiles"                             ^
+  -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%"                ^
+  -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%"                   ^
+  -DCMAKE_BUILD_TYPE="%CMAKE_CONFIG%"                      ^
+  -DENABLE_THREADS=ON                                      ^
+  -DWITH_COMBINED_THREADS=ON                               ^
+  -DENABLE_SSE2=ON                                         ^
+  -DENABLE_AVX=ON                                          ^
+  ..
+if errorlevel 1 exit 1
+
+cmake --build . --config %CMAKE_CONFIG% --target install
+if errorlevel 1 exit 1
+
+ctest --output-on-failure --timeout 100
+if errorlevel 1 exit 1
+
+del CMakeCache.txt
+
+cmake -LAH -G"NMake Makefiles"                             ^
+  -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%"                ^
+  -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%"                   ^
+  -DCMAKE_BUILD_TYPE="%CMAKE_CONFIG%"                      ^
+  -DENABLE_THREADS=ON                                      ^
+  -DWITH_COMBINED_THREADS=ON                               ^
+  -DENABLE_SSE2=ON                                         ^
+  -DENABLE_AVX=ON                                          ^
+  -DENABLE_FLOAT=ON                                        ^
+  ..
+if errorlevel 1 exit 1
+
+cmake --build . --config %CMAKE_CONFIG% --target install
+if errorlevel 1 exit 1
+
+ctest --output-on-failure --timeout 100
+if errorlevel 1 exit 1
+
