@@ -60,7 +60,7 @@ test:
     - test -f ${PREFIX}/lib/{{ lib }}.so       # [linux]
     {% endfor %}
       
-    {% set baselist = ["libfftw3f-3", "libfftw3-3", "libfftw3l-3"] %}
+    {% set baselist = ["fftw3f", "fftw3"] %}
               
     {% for base in baselist %}          
     - if not exist %LIBRARY_LIB%\\{{ base }}.lib exit 1  # [win]
