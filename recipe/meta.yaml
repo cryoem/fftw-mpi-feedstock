@@ -1,4 +1,4 @@
-{% set version = "3.3.5" %}
+{% set version = "3.3.6" %}
 
 package:
   name: fftw-mpi
@@ -6,8 +6,8 @@ package:
 
 source:
   fn: fftw-{{ version }}.tar.gz
-  url: http://www.fftw.org/fftw-{{ version }}.tar.gz
-  sha256: 8ecfe1b04732ec3f5b7d279fdb8efcad536d555f9d1e8fabd027037d45ea8bcf
+  url: http://www.fftw.org/fftw-{{ version }}-pl2.tar.gz
+  sha256: a5de35c5c824a78a058ca54278c706cdf3d4abba1c56b63531c2cb05f5d57da2
 
 build:
   number: 1
