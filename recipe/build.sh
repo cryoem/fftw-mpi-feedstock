@@ -27,12 +27,22 @@ build_cases=(
     "$CONFIGURE --enable-long-double"
 )
 
+# first build shared objects
 for config in "${build_cases[@]}"
 do
     :
-    $config
+    $config --enable-shared --disable-static
     ${BUILD_CMD}
     ${INSTALL_CMD}
     ${TEST_CMD}
 done
 
+# now build static libraries without exposing fftw* symbols in downstream shared objects
+for config in "${build_cases[@]}"
+do
+    :
+    $config --disable-shared --enable-static CFLAGS="${CFLAGS} -fvisibility=hidden"
+    ${BUILD_CMD}
+    ${INSTALL_CMD}
+    ${TEST_CMD}
+done
