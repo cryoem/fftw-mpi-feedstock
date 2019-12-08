@@ -13,3 +13,11 @@ channels:
 github:
   user_or_org: cryoem
   repo_name: fftw-mpi-feedstock
+
+provider:
+  linux: circle
+  osx: travis
+  win: appveyor
+
+azure:
+  build_id: blank
