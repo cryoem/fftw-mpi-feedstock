@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-unset CFLAGS
-
 export LDFLAGS="${LDFLAGS} -L${PREFIX}/lib"
+export CFLAGS="${CFLAGS} -I${PREFIX}/include -O3 -fomit-frame-pointer -fstrict-aliasing -ffast-math"
 
 CONFIGURE="./configure --prefix=$PREFIX --with-pic --enable-shared --enable-threads --disable-fortran --enable-mpi"
 
