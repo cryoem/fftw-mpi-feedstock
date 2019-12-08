@@ -59,10 +59,10 @@ test:
     - test -f ${PREFIX}/lib/{{ lib }}.dylib    # [osx]
     - test -f ${PREFIX}/lib/{{ lib }}.so       # [linux]
     {% endfor %}
-      
-    {% set baselist = ["fftw3f", "fftw3"] %}
-              
-    {% for base in baselist %}          
+
+    {% set fftw_libs = ["fftw3f", "fftw3"] %}
+
+    {% for base in fftw_libs %}
     - if not exist %LIBRARY_LIB%\\{{ base }}.lib exit 1  # [win]
     - if not exist %LIBRARY_BIN%\\{{ base }}.dll exit 1  # [win]
     {% endfor %}
