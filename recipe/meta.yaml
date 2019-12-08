@@ -11,10 +11,6 @@ source:
 
 build:
   number: 2
-  features:
-    - vc9  # [win and py27]
-    - vc14  # [win and py>=35]
-  skip: true  # [win and py35]
 
 requirements:
   build:
@@ -27,8 +23,6 @@ requirements:
     - openmpi  # [not win]
 
 test:
-  requires:
-    - python {{ os.environ.get('PY_VER', '') + '*' }}  # [win]
   commands:
     - exit $(test -f ${PREFIX}/lib/libfftw3f.a)          # [not win]
     - exit $(test -f ${PREFIX}/lib/libfftw3.a)           # [not win]
