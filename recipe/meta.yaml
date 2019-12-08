@@ -14,9 +14,10 @@ build:
 
 requirements:
   build:
-    - toolchain
     - perl   # [not win]
     - cmake  # [win]
+    - {{ compiler('c') }}
+  host:
     - openmpi  # [not win]
 
   run:
