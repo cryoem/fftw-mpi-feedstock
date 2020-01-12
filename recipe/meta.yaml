@@ -21,10 +21,10 @@ requirements:
     - cmake  # [win]
     - {{ compiler('c') }}
   host:
-    - openmpi  # [not win]
+    - openmpi {{openmpi}}  # [not win]
 
   run:
-    - openmpi  # [not win]
+    - openmpi {{openmpi}}  # [not win]
 
 test:
   commands:
