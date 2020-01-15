@@ -35,13 +35,14 @@ install:
 
     # Add path, activate `conda` and update conda.
     - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
-    - cmd: conda.exe update --yes --quiet conda
 
     - cmd: set PYTHONUNBUFFERED=1
+    - conda.exe install -n root vs2008_express_vc_python_patch -c conda-forge --yes --quiet
+    - call setup_x64
 
     # Configure the VM.
     # Tell conda we want an updated version of conda-forge-ci-setup and conda-build
-    - cmd: conda.exe install -n root -c conda-forge --quiet --yes conda-forge-ci-setup=2 conda-build
+    - cmd: conda.exe install -n root -c conda-forge --quiet --yes conda-forge-ci-setup=2 conda=4.6.14 conda-build=3.17.8
     - cmd: setup_conda_rc .\ .\recipe .\.ci_support\%CONFIG%.yaml
     
 
