@@ -10,8 +10,17 @@ jobs:
   strategy:
     maxParallel: 8
     matrix:
-      osx_:
-        CONFIG: osx_
+      osx_openmpi2.0.2:
+        CONFIG: osx_openmpi2.0.2
+        UPLOAD_PACKAGES: False
+      osx_openmpi2.1.1:
+        CONFIG: osx_openmpi2.1.1
+        UPLOAD_PACKAGES: False
+      osx_openmpi2.1.2:
+        CONFIG: osx_openmpi2.1.2
+        UPLOAD_PACKAGES: False
+      osx_openmpi3:
+        CONFIG: osx_openmpi3
         UPLOAD_PACKAGES: False
 
   steps:

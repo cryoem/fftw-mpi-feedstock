@@ -50,24 +50,73 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux</td>
+              <td>linux_openmpi2.0.2</td>
               <td>
                 <a href="https://dev.azure.com/cryoem/feedstock-builds/_build/latest?definitionId=blank&branchName=master">
-                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=linux&configuration=linux_" alt="variant">
+                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=linux&configuration=linux_openmpi2.0.2" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx</td>
+              <td>linux_openmpi2.1.1</td>
               <td>
                 <a href="https://dev.azure.com/cryoem/feedstock-builds/_build/latest?definitionId=blank&branchName=master">
-                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=osx&configuration=osx_" alt="variant">
+                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=linux&configuration=linux_openmpi2.1.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win_c_compilervs2008vc9</td>
+              <td>linux_openmpi2.1.2</td>
               <td>
                 <a href="https://dev.azure.com/cryoem/feedstock-builds/_build/latest?definitionId=blank&branchName=master">
-                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2008vc9" alt="variant">
+                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=linux&configuration=linux_openmpi2.1.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_openmpi3</td>
+              <td>
+                <a href="https://dev.azure.com/cryoem/feedstock-builds/_build/latest?definitionId=blank&branchName=master">
+                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=linux&configuration=linux_openmpi3" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_openmpi2.0.2</td>
+              <td>
+                <a href="https://dev.azure.com/cryoem/feedstock-builds/_build/latest?definitionId=blank&branchName=master">
+                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=osx&configuration=osx_openmpi2.0.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_openmpi2.1.1</td>
+              <td>
+                <a href="https://dev.azure.com/cryoem/feedstock-builds/_build/latest?definitionId=blank&branchName=master">
+                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=osx&configuration=osx_openmpi2.1.1" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_openmpi2.1.2</td>
+              <td>
+                <a href="https://dev.azure.com/cryoem/feedstock-builds/_build/latest?definitionId=blank&branchName=master">
+                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=osx&configuration=osx_openmpi2.1.2" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_openmpi3</td>
+              <td>
+                <a href="https://dev.azure.com/cryoem/feedstock-builds/_build/latest?definitionId=blank&branchName=master">
+                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=osx&configuration=osx_openmpi3" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_c_compilervs2008</td>
+              <td>
+                <a href="https://dev.azure.com/cryoem/feedstock-builds/_build/latest?definitionId=blank&branchName=master">
+                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2008" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_c_compilervs2015</td>
+              <td>
+                <a href="https://dev.azure.com/cryoem/feedstock-builds/_build/latest?definitionId=blank&branchName=master">
+                  <img src="https://dev.azure.com/cryoem/feedstock-builds/_apis/build/status/fftw-mpi-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2015" alt="variant">
                 </a>
               </td>
             </tr>

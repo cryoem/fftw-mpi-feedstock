@@ -1,0 +1,17 @@
+c_compiler:
+- gcc
+c_compiler_version:
+- '7'
+channel_sources:
+- cryoem, defaults,conda-forge
+channel_targets:
+- cryoem main
+docker_image:
+- condaforge/linux-anvil-comp7
+openmpi:
+- 2.1.2
+perl:
+- 5.26.2
+pin_run_as_build:
+  perl:
+    max_pin: x.x.x
