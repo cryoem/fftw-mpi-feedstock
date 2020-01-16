@@ -1,9 +1,9 @@
 travis:
   secure:
-    BINSTAR_TOKEN: Xg3txD8jDvjaImDpknGFrBTUMgyvNC8qW0doMHaxt1kSoRXywsipgsIu+PyOKXa4jqvU4E86Gv0r07WYX/L0JiP+kCLRp3hYiP+xJOvEitcGBKygLkuKAt99xHuDUGB0heWDEhWYGDlh5jNMWj1OtDf+8bXiSqYL8XUrLwM1/QPqysdYZCnrzIOcz4mh5p671RKP93GSTOmIna2d+vFHWHdG4UgCSZLM40oDgLP3rqzA1KnpZD623GIALuzP1osBKQRlSg0vSNL3k5LOILkqUZE+dIebjUI2NLdYb7PKBUjyEr5nhuARV/6briA6lssKMo81ViAzxtEqxD9KdQ4RcaJ3mpwrc1+gnmEMPlTotSUqGttB/FAKMzXtT5LkIPuuwNAHj1tme3TotnRlei6pVplC2XHfzJPJGI/qmLf8fa0L6GfoGslB2grlzYiAL3TPpdYd4D4RqSspH8mMnRBafUGoA/x8GPfctBEoLZN4rUhcqDj+9m3msNE18ck/a3UrVhKITvkJFXTtIj4B/3zvRMLg7QiUU/KfcCxHN9a55f9xZH9Q1AX9E9UwS5RNvSx8GhviiETDYq7myy8YVtWYsIeWRL+s2Y2Hdu5gzsbHgX97c83I9d8hnMQ17looiw7ywfq/ypPyKTp2gSCr6TWPTdH9wCiBX+ADexD9ObpfOSU=
+    BINSTAR_TOKEN: BVWKtKTRWuxS6yyzHUcer3+t92ETPWdFf4qFux/JyyFXL026cF1FM8iwQZZ5mrDG9fFvJYI6f3AMc0/KB0ffXI5Rnm/J89+GT0eYHiUZ5Y9A17c8A3YzP6P74hsauP4htJ5DqHkOFL6ehE7EaDyRMC6ouK5nAUrQn9A4t5AJVUqmVlJ6jST9mv2jZGm1yBmMO7LfqJH8pblsWoIBM9HbmsLhVbFQaoKe3jbhRAaLQfMK3R4u4kTrYNBpKrhP8gHRe5zhr2IolCA/7uq4ylBZ7Lh0+D2wcv+sr++kBNAxRRslm2Efw2HiGWS9XxR8QLzuJYCuPYEsCq6VhK5oe8rnomk8rcCt75Rg2FKrjJ/d2RgzdqiCkO/iqiQcbWxnTQFub+BRuE/m5VOHx1XRi8X9GqvEvmJWsbgag4D3d6Il4oe1jYy7ynpuL92//jSR+VrW9ICuNLh7robGBC0gzsyv2DYtfAlj4X3Ka0T65SVz9n5lQBakDC3LdYdA3IGHYhA5cFLBWrJwOGxg6St8tt6Mz2MkqBWxJp+Mc9iySisKNOjiBU44bK7Nytu2sKJ9LZMvWQTZIpXhyUfaEApl4wz4I3SIPRZMQOvcZllj3sZjJ2TkfwGTjP4BK/9LcQKetRw62tn4D357/nCj/PPnzt6JYmE0KgvVsLCo7QEkMB6JXOc=
 appveyor:
   secure:
-    BINSTAR_TOKEN: OcAUZlpSDgQtX8QAIX7qr8iZhsrOWwlmuyDECE7wAYBRlvXIBJ7BbXhX/Fmz4Oib
+    BINSTAR_TOKEN: hhS98dVbKVMiq1d7IEUyMCfA9Be1YSA2+BfDYf+1wwLYdOoWLWVaehGr6/mjqeAv
 
 channels:
   sources: [cryoem, defaults, conda-forge]
@@ -13,3 +13,11 @@ channels:
 github:
   user_or_org: cryoem
   repo_name: fftw-mpi-feedstock
+
+provider:
+  linux: circle
+  osx: travis
+  win: appveyor
+
+azure:
+  build_id: blank
