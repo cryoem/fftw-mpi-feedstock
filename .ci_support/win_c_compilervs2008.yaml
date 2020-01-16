@@ -1,9 +1,6 @@
+c_compiler:
+- vs2008
 channel_sources:
 - cryoem, defaults,conda-forge
 channel_targets:
 - cryoem main
-openmpi:
-  - 2.0.2
-  - 2.1.1
-  - 2.1.2
-  - 3

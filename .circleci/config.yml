@@ -5,11 +5,65 @@
 version: 2
 
 jobs:
-  build_linux_:
+  build_linux_openmpi2.0.2:
     working_directory: ~/test
     machine: true
     environment:
-      - CONFIG: "linux_"
+      - CONFIG: "linux_openmpi2.0.2"
+        DOCKER_IMAGE: "condaforge/linux-anvil-comp7"
+    steps:
+      - checkout
+      - run:
+          name: Fast finish outdated PRs and merge PRs
+          command: |
+            ./.circleci/fast_finish_ci_pr_build.sh
+            ./.circleci/checkout_merge_commit.sh
+      - run:
+          # Run, test and (if we have a BINSTAR_TOKEN) upload the distributions.
+          command: |
+            export CI=circle
+            ./.scripts/run_docker_build.sh
+  build_linux_openmpi2.1.1:
+    working_directory: ~/test
+    machine: true
+    environment:
+      - CONFIG: "linux_openmpi2.1.1"
+        DOCKER_IMAGE: "condaforge/linux-anvil-comp7"
+    steps:
+      - checkout
+      - run:
+          name: Fast finish outdated PRs and merge PRs
+          command: |
+            ./.circleci/fast_finish_ci_pr_build.sh
+            ./.circleci/checkout_merge_commit.sh
+      - run:
+          # Run, test and (if we have a BINSTAR_TOKEN) upload the distributions.
+          command: |
+            export CI=circle
+            ./.scripts/run_docker_build.sh
+  build_linux_openmpi2.1.2:
+    working_directory: ~/test
+    machine: true
+    environment:
+      - CONFIG: "linux_openmpi2.1.2"
+        DOCKER_IMAGE: "condaforge/linux-anvil-comp7"
+    steps:
+      - checkout
+      - run:
+          name: Fast finish outdated PRs and merge PRs
+          command: |
+            ./.circleci/fast_finish_ci_pr_build.sh
+            ./.circleci/checkout_merge_commit.sh
+      - run:
+          # Run, test and (if we have a BINSTAR_TOKEN) upload the distributions.
+          command: |
+            export CI=circle
+            ./.scripts/run_docker_build.sh
+  build_linux_openmpi3:
+    working_directory: ~/test
+    machine: true
+    environment:
+      - CONFIG: "linux_openmpi3"
         DOCKER_IMAGE: "condaforge/linux-anvil-comp7"
     steps:
       - checkout
@@ -28,4 +82,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build_linux_
+      - build_linux_openmpi2.0.2
+      - build_linux_openmpi2.1.1
+      - build_linux_openmpi2.1.2
+      - build_linux_openmpi3

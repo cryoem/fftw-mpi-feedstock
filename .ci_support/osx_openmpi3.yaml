@@ -1,13 +1,19 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '10.9'
 c_compiler:
-- gcc
+- clang
 c_compiler_version:
-- '7'
+- '4'
 channel_sources:
 - cryoem, defaults,conda-forge
 channel_targets:
 - cryoem main
-docker_image:
-- condaforge/linux-anvil-comp7
+macos_machine:
+- x86_64-apple-darwin13.4.0
+macos_min_version:
+- '10.9'
+openmpi:
+- '3'
 perl:
 - 5.26.2
 pin_run_as_build:

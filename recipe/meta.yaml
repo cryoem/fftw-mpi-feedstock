@@ -1,4 +1,5 @@
 {% set version = "3.3.6" %}
+{% set build   = 4 %}
 
 package:
   name: fftw-mpi
@@ -10,8 +11,8 @@ source:
   sha256: a5de35c5c824a78a058ca54278c706cdf3d4abba1c56b63531c2cb05f5d57da2
 
 build:
-  number: 3
-  skip: True  # [win and vc>9]
+  number: {{ build }}
+  string: openmpi{{openmpi}}_{{ build }}  # [not win]
 
 requirements:
   build:
@@ -19,10 +20,10 @@ requirements:
     - cmake  # [win]
     - {{ compiler('c') }}
   host:
-    - openmpi  # [not win]
+    - openmpi {{openmpi}}  # [not win]
 
   run:
-    - openmpi  # [not win]
+    - openmpi {{openmpi}}  # [not win]
 
 test:
   commands:
