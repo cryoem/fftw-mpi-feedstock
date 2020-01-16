@@ -10,25 +10,21 @@ source:
   sha256: a5de35c5c824a78a058ca54278c706cdf3d4abba1c56b63531c2cb05f5d57da2
 
 build:
-  number: 2
-  features:
-    - vc9  # [win and py27]
-    - vc14  # [win and py>=35]
-  skip: true  # [win and py35]
+  number: 3
+  skip: True  # [win and vc>9]
 
 requirements:
   build:
-    - toolchain
-    - perl 5.22.2.1  # [not win]
+    - perl   # [not win]
     - cmake  # [win]
+    - {{ compiler('c') }}
+  host:
     - openmpi  # [not win]
 
   run:
     - openmpi  # [not win]
 
 test:
-  requires:
-    - python {{ os.environ.get('PY_VER', '') + '*' }}  # [win]
   commands:
     - exit $(test -f ${PREFIX}/lib/libfftw3f.a)          # [not win]
     - exit $(test -f ${PREFIX}/lib/libfftw3.a)           # [not win]
@@ -59,10 +55,10 @@ test:
     - test -f ${PREFIX}/lib/{{ lib }}.dylib    # [osx]
     - test -f ${PREFIX}/lib/{{ lib }}.so       # [linux]
     {% endfor %}
-      
-    {% set baselist = ["fftw3f", "fftw3"] %}
-              
-    {% for base in baselist %}          
+
+    {% set fftw_libs = ["fftw3f", "fftw3"] %}
+
+    {% for base in fftw_libs %}
     - if not exist %LIBRARY_LIB%\\{{ base }}.lib exit 1  # [win]
     - if not exist %LIBRARY_BIN%\\{{ base }}.dll exit 1  # [win]
     {% endfor %}

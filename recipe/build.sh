@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-unset CFLAGS
-
 export LDFLAGS="${LDFLAGS} -L${PREFIX}/lib"
+export CFLAGS="${CFLAGS} -I${PREFIX}/include -O3 -fomit-frame-pointer -fstrict-aliasing -ffast-math"
 
 CONFIGURE="./configure --prefix=$PREFIX --with-pic --enable-shared --enable-threads --disable-fortran --enable-mpi"
 
@@ -21,19 +20,29 @@ TEST_CMD="eval cd tests && make check-local && cd -"
 #
 build_cases=(
     # single
-    "$CONFIGURE --enable-float --enable-sse --enable-sse2 --enable-avx"
+    "$CONFIGURE --enable-float --enable-sse --enable-sse2 --enable-avx --enable-silent-rules"
     # double
-    "$CONFIGURE --enable-sse2 --enable-avx"
+    "$CONFIGURE --enable-sse2 --enable-avx --enable-silent-rules"
     # long double (SSE2 and AVX not supported)
     "$CONFIGURE --enable-long-double"
 )
 
+# first build shared objects
 for config in "${build_cases[@]}"
 do
     :
-    $config
+    $config --enable-shared --disable-static
     ${BUILD_CMD}
     ${INSTALL_CMD}
-    ${TEST_CMD}
+#    ${TEST_CMD}
 done
 
+# now build static libraries without exposing fftw* symbols in downstream shared objects
+for config in "${build_cases[@]}"
+do
+    :
+    $config --disable-shared --enable-static CFLAGS="${CFLAGS} -fvisibility=hidden"
+    ${BUILD_CMD}
+    ${INSTALL_CMD}
+#    ${TEST_CMD}
+done
